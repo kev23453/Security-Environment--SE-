@@ -26,8 +26,6 @@ Este proyecto emplea tecnologías modernas para asegurar la precisión y accesib
   
 - **Backend**: Utilizamos PHP para gestionar eficientemente los datos y las solicitudes del servidor.
   
-- **Análisis de Datos**: Python, con bibliotecas como Pandas y Scikit-learn, para procesar y analizar los datos recolectados.
-  
 - **Base de Datos**: Almacenamiento de datos en SQL, utilizando MySQL o PostgreSQL para asegurar la fiabilidad y el acceso rápido a la información.
 
 ### Uso y Beneficios

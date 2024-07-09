@@ -30,6 +30,8 @@ userTokens
 
 CREATE DATABASE security_environment;
 
+USE security_environment;
+
 CREATE TABLE users(
    idUser INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
    username varchar(60) NOT NULL,
@@ -57,6 +59,52 @@ CREATE TABLE userTokens(
     FOREIGN KEY (token_id) REFERENCES token(idToken) ON DELETE CASCADE,
     assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE admin(
+   idAdmin INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL, -- definira el id del administrador
+   username VARCHAR(60) NOT NULL, -- el username de ese administrador
+   emailName VARCHAR(60) NOT NULL, -- el nombre de usuario de su correo electronico
+   email VARCHAR(100) NOT NULL, -- email del administrador para el envio de correos electronicos
+   password VARCHAR(255) NOT NULL, -- la contraseña del administrador, normalmente el administrador sera creado por el admin prime
+   adminType -- reader: solo puede leer el contenido del dashboard, 
+             -- uno que pueda editar
+             -- un usuario que estara con las credenciales en .env (propietario)
+);
+
+CREATE TABLE adminType(
+   idType INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+   type CHAR(15) NOT NULL
+);
+
+
+CREATE TABLE admin_adminType(
+   idAdmin INT,
+   idType INT,
+   PRIMARY KEY (idAdmin, idType),
+   FOREIGN KEY (idAdmin) REFERENCES admin(idAdmin),
+   FOREIGN KEY (idType) REFERENCES adminType(idType)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 -- DOCUMENTACION DE ERRORES 😒

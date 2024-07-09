@@ -1,2 +1,3 @@
 #cancelando archivo ENV para subirse
 .env
+.ref_images

@@ -1,0 +1,11 @@
+:root{
+    /*aqui iran todas nuestras variables*/
+    --border: 1px solid #dadada;
+    --border-radius-input: 4px;
+    --principal-color: #00b3ff;
+    --white: #fff;
+    --black: #000
+    --border-black: 1.4px solid #000;
+    --shadow-containers: 3px 3px 6px rgba(255, 255, 255, 0.8);
+    --transition: .4s ease all;
+}

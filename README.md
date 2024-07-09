@@ -1,4 +1,5 @@
 # Security-Environment-SE-
+_julio-07-2024_
 
 ### Proyecto de Filtrado de Zonas Peligrosas en la República Dominicana
 
@@ -26,7 +27,7 @@ Este proyecto emplea tecnologías modernas para asegurar la precisión y accesib
   
 - **Backend**: Utilizamos PHP para gestionar eficientemente los datos y las solicitudes del servidor.
   
-- **Base de Datos**: Almacenamiento de datos en SQL, utilizando MySQL o PostgreSQL para asegurar la fiabilidad y el acceso rápido a la información.
+- **Base de Datos**: Almacenamiento de datos en SQL, utilizando MySQL  para asegurar la fiabilidad y el acceso rápido a la información.
 
 ### Uso y Beneficios
 

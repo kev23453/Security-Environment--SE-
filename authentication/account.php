@@ -30,7 +30,17 @@ if(isset($_POST[''])){} //evaluar el metodo de envio
         </div>
 
         <div id="form">
- 
+            <div class="containerBoxes">
+                <div class="box"><span>username</span><input type="text" placeholder="" name="username" id="username"></div>
+                <div class="box"><span>email username</span><input type="text" name="nameEmail" id="nameEmail"></div>
+            </div>
+            <div class="box">
+                <input type="email" name="emailSingUp" id="emailSingUp">
+            </div>
+            <div class="containerBoxes">
+                <div><span>password</span><input type="password" name="pass" id="pass"></div>
+                <div><span>confirm password</span><input type="password" name="cpass" id="cpass"></div>
+            </div>
         </div>
 
     </form>

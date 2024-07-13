@@ -7,9 +7,203 @@
     list-style: none;
     font-family: 'Montserrat', sans-serif;
 }
-
-@import url('../variables_css/styles.css');
-
-h2{
-    background: var(--principal-color);
+:root{
+    --border: 1px solid #d9d9d9;
+    --borde-exterior: 8px;
+    --borde-inputs: 4px;
+    --color-text: #959595;
+    --white: #fff;
+    --black: #000;
+    --grey: #808080;
+    --deep-green: rgb(3, 94, 44);
+    --light-green: rgba(47, 202, 125, 0.657);
+    --transition: .2s ease all;
+    --light-blue: #0764dc;
 }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: capitalize;
+}
+body{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+#fullContainer{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#container_forms{
+    width: 450px;
+    /*border: var(--border);*/
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    height: 600px;
+    justify-content: center;
+}
+
+
+/*------------------------------------------------
+    --------------login styles--------------
+-------------------------------------------------*/
+
+#container_forms #login, #register{
+    background: var(--white);
+    position: absolute;
+    z-index: 1;
+    border: var(--border);
+    padding: 20px;
+    border-radius: var(--borde-exterior);
+    width: 80%;
+}
+#container_forms #login.hide{
+    opacity: 0;
+    pointer-events: none;
+}
+
+#container_forms #login #titleLog, #titleReg{
+    font-size: 35px;
+    font-weight: 600;
+    color: #3c3c3c;
+    margin-bottom: 35px;
+}
+
+#container_forms #login .box, #register .box{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 20px 0;
+}
+#container_forms #login .box span, #register .box span{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--grey);
+}
+#container_forms #login .box input, #register .box input{
+    margin-top: 10px;
+    border-radius: var(--borde-inputs);
+    padding: 16px 13px;
+    border: var(--border);
+    outline: none;
+    font-size: 14px;
+}
+#container_forms #login .box #logSend{
+    background: var(--light-blue);
+    color: var(--white);
+    border: none;
+    outline: none;
+    padding: 15px 0;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: var(--borde-inputs);
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+#container_forms #register{
+    background: var(--white);
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 100%;
+}
+
+#container_forms #register.show{
+    opacity: 1;
+    pointer-events: all;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+#container_forms #register .containerBoxes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#container_forms #register .containerBoxes .box{
+    margin: 10px 0 10px 0;
+}
+
+#container_forms #register .containerBoxes .checkContainer{
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+#container_forms #register .box input{
+    padding: 10px 13px;
+
+}
+
+#container_forms #register p{
+    text-align: center;
+    margin-top:  13px;
+    font-weight: 500;
+    color: var(--grey);
+    font-size: 14px;
+}
+
+#container_forms #register #regSend{
+    width: 100%;
+    margin-top: 12px;
+    padding: 9px 0;
+    border-radius: var(--borde-inputs);
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: var(--light-blue);
+    color: var(--white);
+}
+
+#container_forms #register #regSend:disabled{
+    opacity: 0.5;
+}
+
+#container_forms #spanC{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+/*---------------------------------------------------
+        ---------------otp code--------------
+*----------------------------------------------------*/
+
+#container-viewPort{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container-viewPort{
+    border: var(--border);
+}
+
+/*-------------------------------------------------*/

@@ -43,10 +43,10 @@ CREATE TABLE users(
 
 CREATE TABLE token(
    idToken INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-   token INT(255) NOT NULL,
+   token VARCHAR(255) NOT NULL,
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    kill_at TIMESTAMP NULL DEFAULT NULL,
-   intentos INT(10),
+   intentos INT(10) NOT NULL DEFAULT 3,
    contador INT(10),
    Is_revoked BOOLEAN DEFAULT FALSE 
 );
@@ -91,6 +91,53 @@ CREATE TABLE admin_adminType(
 
 
 
+
+
+
+
+-- PROCEDURES
+
+DELIMITER //
+
+CREATE PROCEDURE timeout()
+BEGIN
+    DECLARE fecha_actual TIMESTAMP;
+    SET fecha_actual = NOW();
+
+    UPDATE token 
+    SET token.Is_revoked = 1
+    WHERE token.kill_at >= fecha_actual;
+
+    UPDATE token 
+    SET token.Is_revoked = 1
+    WHERE token.contador = 3;
+END //
+
+DELIMITER ;
+
+
+--EVENTS
+
+CREATE EVENT `Call_timeout` ON SCHEDULE EVERY 1 SECOND ON COMPLETION NOT PRESERVE ENABLE DO CALL timeout();
+
+
+
+
+
+
+
+
+
+
+/*BEGIN
+    DECLARE fecha_actual TIMESTAMP;
+    SET fecha_actual = NOW();
+
+    UPDATE token 
+    SET token.Is_revoked = 1,
+    SET token.contador = 3
+    WHERE token.kill_at >= fecha_actual;
+END*/
 
 
 

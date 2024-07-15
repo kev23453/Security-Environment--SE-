@@ -41,5 +41,5 @@ Con nuestra aplicación podrás:
 
 ### Contribución
 
-Te invitamos a contribuir al desarrollo y mejora continua de este proyecto. Si tienes ideas para mejorarlo o deseas reportar problemas, contáctanos para discutir cómo podemos hacer de esta herramienta algo aún más valioso.
+Te invitamos a [contribuir](https://github.com/kev23453/Security-Environment--SE-/blob/main/CONTRIBUTING.md) al desarrollo y mejora continua de este proyecto. Si tienes ideas para mejorarlo o deseas reportar problemas, contáctanos para discutir cómo podemos hacer de esta herramienta algo aún más valioso.
 

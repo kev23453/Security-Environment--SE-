@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: capitalize;
+}
+
 :root{
     /*aqui iran todas nuestras variables*/
     --border: 1px solid #dadada;
@@ -7,8 +18,10 @@
     --black: #000;
     --yellow-light: rgba(255, 246, 218, 0.193);
     --border-black: 1.4px solid #000;
+    --border-light: 1px solid #d1d1d1;
     --shadow-containers: 3px 3px 6px rgba(255, 255, 255, 0.8);
     --transition: .4s ease all;
     --ancho-total: 100%;
     --alto-total: 100%;
+    --all-viewport: 100vh;
 }

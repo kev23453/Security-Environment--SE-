@@ -25,20 +25,29 @@ if(isset($_POST['testCode'])){
     $fetch_tok = mysqli_fetch_assoc($slct_tok);
     $token = trim($fetch_tok['token']);//trim es un metodo para eliminar los espacios en blanco que tenga la variable
 
-
-    if($fetch_tok['contador'] == $fetch_tok['intentos']){
-        $message_alert[] = "has agotado tus intentos";
-    }
-    else{
-        if($codigo != $token){//el usuario se equivoco de codigo
-            $message_alert[] = "token incorrecto";
-            $fail = $fetch_tok['contador'] += 1;
-            $update_contador = mysqli_query($conection, "UPDATE token SET contador = '$fail' WHERE idToken = ".$fetch_tok['idToken']." ");
+    if($fetch_tok['idType'] != 1){
+        $message_alert[] = "token de verificacion invalido";
+    }else{
+        if($fetch_tok['contador'] == $fetch_tok['intentos']){
+            $message_alert[] = "has agotado tus intentos";
+            header("refresh:1; url='account.php'");
         }
         else{
-            $message_check[] = "bienvenido";
-            header("refresh:1; url='../index.php'");
-        }   
+            if($fetch_tok['Is_revoked'] == true){
+                $message_error[] = "tu codigo ha pasado el tiempo limite, si tienes problemas reenvialo otra vez";
+            }
+            elseif($codigo != $token){//el usuario se equivoco de codigo
+                $message_alert[] = "token incorrecto";
+                $fail = $fetch_tok['contador'] += 1;
+                $update_contador = mysqli_query($conection, "UPDATE token SET contador = '$fail' WHERE idToken = ".$fetch_tok['idToken']." ");
+            }
+            else{
+                $message_check[] = "bienvenido";
+                header("refresh:1; url='../index.php'");
+                $status = true;
+                $activated_us = mysqli_query($conection, "UPDATE users SET verify = $status WHERE idUser = $user ");
+            }   
+        }
     }
 }
 
@@ -49,7 +58,7 @@ if(isset($_POST['testCode'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/account_styles/style.css">
+    <link rel="stylesheet" href="../assets/css/account_styles/otp.css">
     <link rel="stylesheet" href="../assets/css/messages_styles/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Activa tu cuenta</title>
@@ -57,15 +66,28 @@ if(isset($_POST['testCode'])){
 <body>
     <?php include '../assets/extra_componets/messages.php';?>
     <form action="" method="post">
-        <div class="container_inputs_tokens">
-            <input type="text" name="digit[]">
-            <input type="text" name="digit[]">
-            <input type="text" name="digit[]">
-            <input type="text" name="digit[]">
-            <input type="text" name="digit[]">
-            <input type="text" name="digit[]">
+        <span>Security Environment</span>
+
+        <div class="container_welcome">
+            <!--hr-->
+            <div class="container_icon">
+                <i class="far fa-shield"></i>
+            </div>
         </div>
-        <button type="submit" name="testCode">evaluar</button>
+
+        <p>the OTP code is sent to the email that was you create account</p>
+        <p>you must put your code in 1 hour</p>
+        
+        <div class="container_inputs_tokens">
+            <input type="text" name="digit[]" class="code">
+            <input type="text" name="digit[]" class="code" disabled>
+            <input type="text" name="digit[]" class="code" disabled>
+            <input type="text" name="digit[]" class="code" disabled>
+            <input type="text" name="digit[]" class="code" disabled>
+            <input type="text" name="digit[]" class="code" disabled>
+        </div>
+        <button type="submit" name="testCode" id="btnOtp" disabled>evaluar</button>
     </form>
 </body>
+<script src="../assets/js/account_scripts/otp_script.js"></script>
 </html>

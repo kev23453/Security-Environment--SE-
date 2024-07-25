@@ -1,0 +1,48 @@
+@import url("../variables_css/styles.css");
+
+body{
+    width: var(--ancho-total);
+    height: var(--all-viewport);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background: rgba(0, 0, 0, 0.383);*/
+   
+    backdrop-filter: blur(3px);
+}
+form{
+    background: var(--white);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+     border: var(--border-light);
+}
+form h2{
+    width: 80%;
+    text-align: center;
+    color: #808080;
+    font-size: 30px;
+}
+form i{
+    font-size: 35px;
+    margin: 15px 0;
+    background: #4845ff;
+    color: var(--white);
+    padding: 25px;
+    border-radius: 50%;
+}
+
+form button{
+    padding: 10px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    border: none;
+    background: #4845ff;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 500;
+}

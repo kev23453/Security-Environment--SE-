@@ -6,9 +6,6 @@ require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
-
-
-
 include '../conexion.php';
 
 date_default_timezone_set($_ENV['DATEZONE']);
@@ -16,7 +13,7 @@ date_default_timezone_set($_ENV['DATEZONE']);
 //creacion del intervalo del otp (5min)
 $currentTime = new DateTime();
 $modifiedTime = clone $currentTime; 
-$modifiedTime->add(new DateInterval('PT10S'));
+$modifiedTime->add(new DateInterval('PT1H'));
 // Formatear las marcas de tiempo para la inserción en la base de datos
 $timeFormatted = $modifiedTime->format('Y-m-d H:i:s');
 
@@ -62,7 +59,7 @@ if(isset($_POST['regSend'])){
                 }
                 $otp_code = generateOtp();
 
-                $insert_token = mysqli_query($conection, "INSERT INTO token(token, kill_at) VALUES(' ".$otp_code['codigo']." ', '$timeFormatted')");
+               $insert_token = mysqli_query($conection, "INSERT INTO token(token, kill_at, idType) VALUES(' ".$otp_code['codigo']." ' , '$timeFormatted', 1 )");
                 if($insert_token){//linea del error
                     $idToken = $conection->insert_id;
                     $insert_relationToken = mysqli_query($conection, "INSERT INTO usertokens(user_id, token_id) VALUES('$idUser','$idToken')");
@@ -220,9 +217,13 @@ if(isset($_POST['logSend'])){
         $slct_user_lg = mysqli_query($conection, "SELECT * FROM users WHERE email = '$logEmail' AND password = '$logPass' ");
         if(mysqli_num_rows($slct_user_lg) > 0){
             $row = mysqli_fetch_assoc($slct_user_lg);
-            setcookie('user_id', $row['idUser'], time() + 60*60*12, '/');
-            $message_check[] = "Bienvenido de vuelta";
-            header("refresh:1; url='../index.php' ");
+            if($row['verify'] == true){
+                setcookie('user_id', $row['idUser'], time() + 60*60*12, '/');
+                $message_check[] = "Bienvenido de vuelta";
+                header("refresh:1; url='../index.php' ");
+            }else{
+                $message_alert[] = "tu cuenta aun no ha sido activada";
+            }
         }else{
             $message_alert[] = "incorrect email or password";
         }

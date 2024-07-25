@@ -95,4 +95,5 @@ body{
 
 .container_charts{
     display: flex;
+    background: rgba(150, 229, 255, 0.377);
 }

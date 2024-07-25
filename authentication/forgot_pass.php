@@ -6,9 +6,29 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 
+$route_c = "../conexion.php";
+$route_lg = "../authentication/sesion.php";
+
 include '../conexion.php';
+include '../authentication/sesion.php';
+
+
 
 if(isset($_POST['reset'])){
+
+    function generateOtp($lenght = 6){
+        $opt = '';
+        $codigo = '';
+        for($i = 0; $i < $lenght; $i++){
+            $opt .= mt_rand(0, 6);
+            $codigo = md5($opt);
+        }
+        return array(
+            'codigo' => $codigo,
+            'otp' => $opt,
+        );
+    }
+    
     //Send Email
     $body = [
         'Messages' => [
@@ -80,12 +100,13 @@ if(isset($_POST['reset'])){
     <table class='box'>
         <tr>
             <td>
-                <a href=''></a>
+                <input type='text' value=".$otp_code['otp']." disabled>
+
             </td>
         </tr>
         <tr>
             <td>
-                <span>You have five attempts to enter the code, if you fail your account will be locked.</span>
+                <span>this is your code for recoveritt your account</span>
             </td>
         </tr>
     </table>
@@ -123,11 +144,15 @@ if(isset($_POST['reset'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/account_styles/recoverit.css">
+    <link rel="stylesheet" href="../assets/css/messages_styles/style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Document</title>
 </head>
 <body>
     <form action="" method="post">
     <h2>presiona aqui para recuperar tu contraseña</h2>
+    <i class="fas fa-envelope"></i>
     <span>se te enviara un email al correo con el que estas registrado</span>
     <button type="submit" name="reset">resetear</button>
     </form>

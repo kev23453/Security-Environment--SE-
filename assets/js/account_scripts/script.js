@@ -23,18 +23,6 @@ btnShowPass.addEventListener("click", function(){
     }
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
 //variables
 const btnRegister = document.getElementById('regSend'); //boton de enviar form de registro
 const checkbox = document.getElementById('check');//input de tipo checkbox

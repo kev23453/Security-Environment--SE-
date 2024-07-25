@@ -72,11 +72,8 @@ $data = '40, 80, 20, 5, 58, 84, 81, 15, 51';
 
 
         <div class="container_charts">
-            <div class="" style="width:700px; height:500px;">
+            <div class="" style="width:1300px; height:500px;">
                 <canvas id="myChart"></canvas>
-            </div>
-            <div class="" style="width:700px; display:flex; justify-content:center; align-items:center; height:400px;">
-                <canvas id="radarChart"></canvas>
             </div>
         </div>
 
@@ -89,7 +86,7 @@ $data = '40, 80, 20, 5, 58, 84, 81, 15, 51';
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: [<?php echo $labels; ?>],
             datasets: [{
@@ -109,31 +106,5 @@ $data = '40, 80, 20, 5, 58, 84, 81, 15, 51';
         }
     });
 
-
-
-
-
-
-    var radar = document.getElementById('radarChart').getContext('2d');
-    var myChart = new Chart(radar, {
-        type: 'polarArea',
-        data: {
-            labels: [<?php echo $labels; ?>],
-            datasets: [{
-                label: 'indice de criminalidad',
-                data: [<?php echo $data; ?>],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
 </script>
 </html>

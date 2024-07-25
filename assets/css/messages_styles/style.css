@@ -1,0 +1,37 @@
+.container_messages{
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    width: 370px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+.message{
+    font-size: 14px;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 13px;
+    font-weight: 500;
+}
+
+.message i{
+    margin: 0 20px 0 7px;
+    font-size: 16px;
+}
+.message_check{
+    background: rgba(25, 220, 123, 0.307);
+    color: #037348;
+}
+
+.message_error, .message_times{
+    background: rgba(220, 25, 58, 0.307);
+    color: #730319;
+}
+
+.message_alert{
+    background: rgba(220, 168, 25, 0.307);
+    color: #cba50f;
+}

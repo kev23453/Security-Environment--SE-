@@ -1,0 +1,87 @@
+@import url("../variables_css/styles.css");
+
+body{
+    width: var(--ancho-total);
+    min-height: var(--all-viewport);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form{
+    width: 50%;
+    border: var(--border-light);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px;
+    border-radius: 6px;
+}
+form span{
+    font-size: 30px;
+    font-weight: 700;
+}
+
+form .container_welcome{
+    width: var(--ancho-total);
+    position: relative;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+form .container_welcome hr{
+    width: var(--ancho-total);
+}
+form .container_welcome i{
+    position: relative;
+    bottom: 10px;
+    font-size: 45px;
+    background: #4592ff;
+    color: var(--white);
+    border-radius: 50%;
+    padding: 25px;
+}
+
+form .container_inputs_tokens{
+    width: var(--ancho-total);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 25px 0;
+}
+form .container_inputs_tokens input{
+    width: 10%;
+    margin: 8px;
+    padding: 20px;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 600;
+    outline: none;
+    border: var(--border-light);
+    border-radius: 5px;
+    color: #4592ff;
+}
+
+form button{
+    width: 30%;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background: #1d54eb;
+    color: #fff;
+}
+form button:disabled{
+    cursor: not-allowed;
+    background: rgba(29, 84, 235, 0.464);
+}
+
+form button.actived{
+    background: #4592ff;
+    cursor: pointer;
+}

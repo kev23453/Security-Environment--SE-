@@ -10,6 +10,12 @@ $conection = mysqli_connect($_ENV['SERVER'], $_ENV['USER'], $_ENV['PASSWORD'], $
 
 if(!$conection){
     echo "error al conectar la base de datos";
+}else{
+    $event_actived = "SET GLOBAL event_scheduler='ON'";
+
+    if($conection->query($event_actived) == false){
+        $message_error[] = "el manejador de eventos no puedo activarse";
+    }
 }
 
 ?>

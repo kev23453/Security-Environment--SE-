@@ -1,5 +1,4 @@
 /*
-
 user
    -idUser INT
    -username varchar
@@ -21,11 +20,7 @@ userTokens
     -idUser INT
     -idToken INT
     -assigned_at DATE O TIMESTAMP
-
 */
-
-
-
 
 -- PRODUCTOS
 
@@ -36,15 +31,9 @@ userTokens
 -- CATEGORIA VARCHAR
 -- STOCK: 48
 
-
-
-
-
-
 CREATE DATABASE security_environment;
 
 USE security_environment;
-
 
 CREATE TABLE users(
    idUser INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -52,17 +41,25 @@ CREATE TABLE users(
    emailName varchar(60) NOT NULL,
    email varchar(100) NOT NULL,
    password varchar(255) NOT NULL,
-   created_at TIMESTAMP NOT NULL
+   created_at TIMESTAMP NOT NULL,
+   verify BOOLEAN DEFAULT FALSE 
+);
+
+CREATE TABLE tokenType(
+   idType INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+   type varchar(50) NOT NULL
 );
 
 CREATE TABLE token(
    idToken INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-   token INT(255) NOT NULL,
+   token VARCHAR(255) NOT NULL,
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    kill_at TIMESTAMP NULL DEFAULT NULL,
-   intentos INT(10),
+   intentos INT(10) NOT NULL DEFAULT 3,
    contador INT(10),
-   Is_revoked BOOLEAN DEFAULT FALSE 
+   Is_revoked BOOLEAN DEFAULT FALSE,
+   idType INT(50) NOT NULL,
+   FOREIGN KEY (idType) REFERENCES tokenType(idType)
 );
 
 CREATE TABLE userTokens(
@@ -74,19 +71,23 @@ CREATE TABLE userTokens(
     assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE adminType(
+   idType INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+   type CHAR(15) NOT NULL
+);
+
 CREATE TABLE admin(
    idAdmin INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL, -- definira el id del administrador
    username VARCHAR(60) NOT NULL, -- el username de ese administrador
    emailName VARCHAR(60) NOT NULL, -- el nombre de usuario de su correo electronico
    email VARCHAR(100) NOT NULL, -- email del administrador para el envio de correos electronicos
    password VARCHAR(255) NOT NULL, -- la contraseña del administrador, normalmente el administrador sera creado por el admin prime
-
-
-CREATE TABLE adminType(
-   idType INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-   type CHAR(15) NOT NULL
+   adminType INT NOT NULL,
+   FOREIGN KEY(adminType) REFERENCES adminType(idType)
+   -- reader: solo puede leer el contenido del dashboard, 
+             -- uno que pueda editar
+             -- un usuario que estara con las credenciales en .env (propietario)
 );
-
 
 CREATE TABLE admin_adminType(
    idAdmin INT,
@@ -96,9 +97,24 @@ CREATE TABLE admin_adminType(
    FOREIGN KEY (idType) REFERENCES adminType(idType)
 );
 
+-- PROCEDURES
+DELIMITER //
 
+CREATE PROCEDURE timeout()
+BEGIN
+    DECLARE fecha_actual TIMESTAMP;
+    SET fecha_actual = NOW();
 
+    UPDATE token 
+    SET token.Is_revoked = 1
+    WHERE fecha_actual >= token.kill_at;
 
--- DOCUMENTACION DE ERRORES 😒
--- HOY ME LLEVO EL DEVIL, ASEGURARSE DE DECLARAR LA LLAVE PRIMARIA ANTES DE CREAR
--- UNA TABLA DE RELACION CON LLAVES PRIMARIAS REFERENCIADAS 
+    UPDATE token 
+    SET token.Is_revoked = 1
+    WHERE token.contador = 3;
+END //
+
+DELIMITER ;
+
+-- EVENTS
+CREATE EVENT `Call_timeout` ON SCHEDULE EVERY 1 SECOND ON COMPLETION NOT PRESERVE ENABLE DO CALL timeout();

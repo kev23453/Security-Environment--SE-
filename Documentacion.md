@@ -75,6 +75,16 @@ TABLA RELACION casos-tipoCaso (relacion entre caso y tipo de caso)
 -idcaso
 -idtype
 
+create table casos_tipocaso (
+    idCaso int(255),
+    idType int(255),
+    primary key (idCaso,idType),
+    foreign key (idCaso) references caso(idCaso),
+    foreign key (idType) references casoType(idType)
+
+)
+
+
 ---
 
 

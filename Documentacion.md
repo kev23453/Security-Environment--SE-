@@ -33,10 +33,43 @@ _TIEMPO DE ENTREGA: 1 DIA_
 
 CREATE TABLE provincias (
     id_provincia INT(50)PRIMARY KEY AUTO_INCREMENT,
-    status VARCHAR (50)
+    provincia VARCHAR (50)
     )
     
-    INSERT INTO provincia (STATUS) VALUES (provincia_norte),(provincia_sur), (provincia_este), (provincia_oeste)
+INSERT INTO provincias (provincia) VALUES
+('Azua'),
+('Bahoruco'),
+('Barahona'),
+('Dajabón'),
+('Distrito Nacional'),
+('Duarte'),
+('El Seybo'),
+('Elías Piña'),
+('Espaillat'),
+('Hato Mayor'),
+('Independencia'),
+('La Altagracia'),
+('La Romana'),
+('La Vega'),
+('Monseñor Nouel'),
+('Monte Cristi'),
+('Monte Plata'),
+('Pedernales'),
+('Peravia'),
+('Puerto Plata'),
+('Samaná'),
+('San Cristóbal'),
+('San José de Ocoa'),
+('San Juan'),
+('San Pedro de Macorís'),
+('Sánchez Ramírez'),
+('Santiago'),
+('Santiago Rodríguez'),
+('Valverde'),
+('La Vega'),
+('San Francisco de Macorís'),
+('Santo Domingo');
+
 ---
 
 
@@ -45,9 +78,11 @@ CREATE TABLE provincias (
 _NIVEL DE DIFICULTAD: FACIL_
 _TIEMPO DE ENTREGA: 1 DIA_
 
-TABLA statusCaso
-- id status
-- status
+CREATE TABLE status_caso (
+    id_status int(50) primary key AUTO_INCREMENT,
+    status varchar(255)
+    )
+    INSERT INTO status_caso (status) VALUES ("Pendiente"),("En curso"),("Declinado"),("Suspendida"),("Cerrado"),("Reabierto"),("Resuelto") 
 
 
 ---

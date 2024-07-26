@@ -31,6 +31,12 @@ _TIEMPO DE ENTREGA: 1 DIA_
 - Id provincia
 - provincia 
 
+CREATE TABLE provincias (
+    id_provincia INT(50)PRIMARY KEY AUTO_INCREMENT,
+    status VARCHAR (50)
+    )
+    
+    INSERT INTO provincia (STATUS) VALUES (provincia_norte),(provincia_sur), (provincia_este), (provincia_oeste)
 ---
 
 

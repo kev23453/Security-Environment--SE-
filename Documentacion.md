@@ -17,6 +17,17 @@ TABLA CASOS (ULTIMA TABLA EN SER CREADA)
 - status - relacion con la tabla statusCaso  llave foranea
 - agente - quien atiende el caso - llave foranea
 
+CREATE TABLE caso(
+    idCaso INT(50) PRIMARY KEY AUTO_INCREMENT,
+    FOREING KEY (casos_tipoCaso) REFERENCES  casos_tipoCaso(idcaso),
+    Descriocion VARCHAR(1500),
+    Registro_fecha TIMESTAMP
+    Hecho_fecha TIMESTAMP,
+    FOREING KEY (provincias)  REFERENCES provincias(id_provincias),
+    FOREING KEY (status_caso) REFERENCES status_caso(id_status),
+    FOREING KEY (admin) REFERENCES admin(idAdmin)
+);
+
 YA ESTA CREADA
 
 TABLA admin (agentes)

@@ -110,6 +110,14 @@ TABLA casoType
 - tipo
 - incluyentes (que engloba este tipo de caso)
 
+
+CREATE TABLE casoType (
+    id_casotype int (500) PRIMARY KEY AUTO_INCREMENT,
+    Type VARCHAR (500),
+)
+INSERT INTO casoType(Type) VALUES (violencia_de_genero),(agrecion),(robo),(estafas),(homicidio)
+
+
 ---
 
 
@@ -123,6 +131,11 @@ TABLA RELACION casos-tipoCaso (relacion entre caso y tipo de caso)
 
 - idcaso
 - idtype
+
+
+create table casos_tipocaso ( idCaso int(255), idType int(255), primary key (idCaso,idType), foreign key (idCaso) references caso(idCaso), foreign key (idType) references casoType(idType)
+
+)
 
 ---
 

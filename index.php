@@ -9,8 +9,10 @@ include 'authentication/sesion.php';
 $labels = "'La Romana','Santiago','Puerto Plata','Santo Domingo','El Seibo','Hato Mayor','Higuey','Azua','San Juan'";
 $data = '40, 80, 20, 5, 58, 84, 81, 15, 51';
 
-?>
+$labels2 = "'homicidios', 'asalto', 'agresion sexual','secuestros'";
+$data2 = '401, 102, 24, 300';
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +26,6 @@ $data = '40, 80, 20, 5, 58, 84, 81, 15, 51';
 
     <title>Document</title>
 </head>
-<!--  <a href="authentication/logout.php">cerrar sesion</a>   -->
 <body>
     <div class="dashboard">
         <header id="cabezera">
@@ -36,75 +37,136 @@ $data = '40, 80, 20, 5, 58, 84, 81, 15, 51';
             <h2>Incidencias</h2>
             <div class="container_data">
 
-            <div class="box">
-                <i class="fas fa-user"></i>
-                <div class="text">
-                    <span>asalto</span>
-                    <h2>25</h2>
+                <div class="box">
+                    <i class="fas fa-user"></i>
+                    <div class="text">
+                        <span>asalto</span>
+                        <h2>25</h2>
+                    </div>
                 </div>
-            </div>
 
-            <div class="box">
-                <i class="fas fa-user"></i>
-                <div class="text">
-                    <span>homicidio</span>
-                    <h2>250</h2>
+                <div class="box">
+                    <i class="fas fa-user"></i>
+                    <div class="text">
+                        <span>homicidio</span>
+                        <h2>250</h2>
+                    </div>
                 </div>
-            </div>
 
-            <div class="box">
-                <i class="fas fa-user"></i>
-                <div class="text">
-                    <span>secuestros</span>
-                    <h2>15</h2>
+                <div class="box">
+                    <i class="fas fa-user"></i>
+                    <div class="text">
+                        <span>secuestros</span>
+                        <h2>15</h2>
+                    </div>
                 </div>
-            </div>
 
-            <div class="box">
-                <i class="fas fa-user"></i>
-                <div class="text">
-                    <span>agresion sexual</span>
-                    <h2>0</h2>
+                <div class="box">
+                    <i class="fas fa-user"></i>
+                    <div class="text">
+                        <span>agresion sexual</span>
+                        <h2>0</h2>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
-
 
         <div class="container_charts">
-            <div class="" style="width:1300px; height:500px;">
-                <canvas id="myChart"></canvas>
+            <div class="" style="width:100vw; height:calc(100vh - 200px);">
+                <canvas id="myChart" style="display: block;"></canvas>
+            </div>
+
+            <br><br><br><br><br>
+
+            <div class="" style="width:1200px; height:400px;">
+                <canvas id="myChart2"></canvas>
             </div>
         </div>
-
     </div>
-
-
-
-    
 </body>
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [<?php echo $labels; ?>],
-            datasets: [{
-                label: 'indice de criminalidad',
-                data: [<?php echo $data; ?>],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+    document.addEventListener('DOMContentLoaded', function() {
+        // Primer gráfico
+        var ctx = document.getElementById('myChart').getContext('2d');
+        ctx.canvas.width = window.innerWidth;
+        ctx.canvas.height = window.innerHeight;
+
+        var myChart = new Chart(ctx, {
+            type: 'line', // Puedes cambiar el tipo de gráfico aquí
+            data: {
+                labels: [<?php echo $labels; ?>],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [<?php echo $data; ?>],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
 
+        // Segundo gráfico
+        var ctx2 = document.getElementById('myChart2').getContext('2d');
+        ctx2.canvas.width = window.innerWidth;
+        ctx2.canvas.height = window.innerHeight;
+
+        var myChart2 = new Chart(ctx2, {
+            type: 'bar', // Puedes cambiar el tipo de gráfico aquí
+            data: {
+                labels: [<?php echo $labels2; ?>],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [<?php echo $data2; ?>],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
 </script>
 </html>

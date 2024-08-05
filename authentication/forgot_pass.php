@@ -1,6 +1,6 @@
 <?php
 
-date_default_timezone_set("America/Santo_Domingo");
+date_default_timezone_set(" ".$_ENV['DATEZONE']." ");
 
 require __DIR__ . '/../vendor/autoload.php';
 

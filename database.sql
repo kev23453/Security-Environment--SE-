@@ -72,6 +72,77 @@ CREATE TABLE admin_adminType(
 
 
 
+
+
+
+
+CREATE TABLE provincia (
+    id_provincia INT(50) PRIMARY KEY AUTO_INCREMENT, 
+    provincia VARCHAR (50)
+);
+
+INSERT INTO provincia(provincia) VALUES ('Azua'), ('Bahoruco'), ('Barahona'), ('Dajabón'), ('Distrito Nacional'), ('Duarte'), ('El Seybo'), ('Elías Piña'), ('Espaillat'), ('Hato Mayor'), ('Independencia'), ('La Altagracia'), ('La Romana'), ('La Vega'), ('Monseñor Nouel'), ('Monte Cristi'), ('Monte Plata'), ('Pedernales'), ('Peravia'), ('Puerto Plata'), ('Samaná'), ('San Cristóbal'), ('San José de Ocoa'), ('San Juan'), ('San Pedro de Macorís'), ('Sánchez Ramírez'), ('Santiago'), ('Santiago Rodríguez'), ('Valverde'), ('La Vega'), ('San Francisco de Macorís'), ('Santo Domingo');
+
+
+
+
+CREATE TABLE status_caso(
+    id_status int(50) primary key AUTO_INCREMENT,
+    status varchar(255)
+);
+
+INSERT INTO status_caso(status) VALUES("Pendiente"),("En curso"),("Declinado"),("Suspendida"),("Cerrado"),("Reabierto"),("Resuelto");
+
+
+
+
+
+
+CREATE TABLE casoType ( 
+    id_casotype int(255) PRIMARY KEY AUTO_INCREMENT,
+    type VARCHAR (500)
+);
+
+INSERT INTO casoType(type) VALUES ('violencia_de_genero'),('agrecion'),('robo'),('estafas'),('homicidio');
+
+
+
+
+CREATE TABLE caso( 
+    idCaso INT(50) PRIMARY KEY AUTO_INCREMENT,
+    tipoCaso INT, -- llave foranea
+    description VARCHAR(1500), 
+    registro_fecha TIMESTAMP,
+    hecho_fecha DATE,
+    place INT, -- llave foranea
+    status INT, -- llave foranea
+    agente INT, -- llave foranea
+    FOREIGN KEY (place) REFERENCES provincia(id_provincia),
+    FOREIGN KEY (status) REFERENCES status_caso(id_status),
+    FOREIGN KEY (agente) REFERENCES admin(idAdmin),
+    FOREIGN KEY (tipoCaso) REFERENCES casoType(id_casotype)
+);
+
+
+create table casos_tipocaso ( 
+    idCaso int(255),
+    idType int(255),
+    primary key (idCaso, idType),
+    foreign key (idCaso) references caso(idCaso),
+    foreign key (idType) references casotype(id_casotype)
+);
+
+-- ALTER TABLE caso ADD FOREIGN KEY (tipoCaso) REFERENCES casos_tipoCaso(idcaso)
+
+
+
+
+
+
+
+
+
+
 -- PROCEDURES
 
 DELIMITER //
@@ -94,6 +165,23 @@ DELIMITER ;
 
 
 
+
+
+
+
+
 -- EVENTS
 CREATE EVENT `Call_timeout` ON SCHEDULE EVERY 1 SECOND ON COMPLETION NOT PRESERVE ENABLE DO CALL timeout();
+
+
+
+
+
+
+
+
+
+
+
+
 

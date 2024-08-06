@@ -60,7 +60,7 @@ if(isset($_POST['regSend'])){
                 $otp_code = generateOtp();
 
                $insert_token = mysqli_query($conection, "INSERT INTO token(token, kill_at, idType) VALUES(' ".$otp_code['codigo']." ' , '$timeFormatted', 1 )");
-                if($insert_token){//linea del error
+                if($insert_token){
                     $idToken = $conection->insert_id;
                     $insert_relationToken = mysqli_query($conection, "INSERT INTO usertokens(user_id, token_id) VALUES('$idUser','$idToken')");
                     if($insert_relationToken){
@@ -175,22 +175,12 @@ if(isset($_POST['regSend'])){
                         if ($response->Messages[0]->Status == 'success') {
                             $message_check[] = "Email sent successfully.";
                         }
-
-
-
-
-
-
-
                     }else{
                         $message_error[] = "error al insertar" . mysqli_error($conection);
                     }
-
                 }else{
                     $message_error[] = "ha ocurrido un error con el codigo otp " . mysqli_error($conection);
                 }
-
-                //----------------------------------------------------//
             }else{
                 $message_error[] = "ha ocurrido un error" . mysqli_error($conection);
             }
@@ -199,16 +189,9 @@ if(isset($_POST['regSend'])){
     }else{
         $message_alert[] = "favor de rellenar todos los campos";
     }
-
 }
 
-
-
-
-
-
 //login code PHP
-
 if(isset($_POST['logSend'])){
     $logEmail = mysqli_real_escape_string($conection, $_POST['logEmail']);
     $logPass = mysqli_real_escape_string($conection, md5($_POST['logPass']));
@@ -231,37 +214,8 @@ if(isset($_POST['logSend'])){
     else{
         $message_alert[] = "rellene ambos campos para completar la accion";
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -330,9 +284,7 @@ if(isset($_POST['logSend'])){
                 <p>Al iniciar sesión, aceptas nuestros Términos y Condiciones y Política de Privacidad. Tu información será utilizada conforme a nuestras políticas.</p>
                 <button type="submit" name="regSend" id="regSend" disabled>registrarse</button>
                 <span id="spanC">already have account <a href="" id="changeForm2">Log in</a></span>
-
             </form>
-
         </div>
     </div>  
 </body>

@@ -56,4 +56,5 @@ camelcase: se basa en escribir la primera letra de una palabra en minuscula
 y las otras unidas a esta en mayuscula
 ej: id-user | idUser
 */
+
 ?>

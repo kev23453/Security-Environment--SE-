@@ -1,3 +1,40 @@
+/*
+user
+   -idUser INT
+   -username varchar
+   -emailName varchar
+   -email varchar
+   -password varchar
+   -created_at DATE O TIMESTAMP
+
+token
+   -idToken INT
+   -token INT
+   -created_at DATE O TIMESTAMP
+   -kill_at DATE O TIMESTAMP
+   -intentos INT
+   -contador INT
+   -Is_revoked: BOLEANO 
+
+userTokens
+    -idUser INT
+    -idToken INT
+    -assigned_at DATE O TIMESTAMP
+*/
+
+-- PRODUCTOS
+
+-- ID: INT
+-- NOMBRE VARCHAR 
+-- CODIGO INT
+-- PRECIO DOUBLE
+-- CATEGORIA VARCHAR
+-- STOCK: 48
+
+CREATE DATABASE security_environment;
+
+USE security_environment;
+
 CREATE TABLE users(
    idUser INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
    username varchar(60) NOT NULL,
@@ -8,13 +45,10 @@ CREATE TABLE users(
    verify BOOLEAN DEFAULT FALSE 
 );
 
-
-
 CREATE TABLE tokenType(
    idType INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
    type varchar(50) NOT NULL
 );
-
 
 CREATE TABLE token(
    idToken INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -28,10 +62,6 @@ CREATE TABLE token(
    FOREIGN KEY (idType) REFERENCES tokenType(idType)
 );
 
-
-
-
-
 CREATE TABLE userTokens(
     user_id INT(10) NOT NULL,
     token_id INT(10) NOT NULL,
@@ -41,12 +71,10 @@ CREATE TABLE userTokens(
     assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE adminType(
    idType INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
    type CHAR(15) NOT NULL
 );
-
 
 CREATE TABLE admin(
    idAdmin INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL, -- definira el id del administrador
@@ -61,7 +89,6 @@ CREATE TABLE admin(
              -- un usuario que estara con las credenciales en .env (propietario)
 );
 
-
 CREATE TABLE admin_adminType(
    idAdmin INT,
    idType INT,
@@ -70,6 +97,7 @@ CREATE TABLE admin_adminType(
    FOREIGN KEY (idType) REFERENCES adminType(idType)
 );
 
+<<<<<<< HEAD
 
 
 
@@ -143,8 +171,9 @@ create table casos_tipocaso (
 
 
 
+=======
+>>>>>>> 53fdc6f62585d9573b45965db9cb317d4e85d0d0
 -- PROCEDURES
-
 DELIMITER //
 
 CREATE PROCEDURE timeout()
@@ -163,6 +192,7 @@ END //
 
 DELIMITER ;
 
+<<<<<<< HEAD
 
 
 
@@ -185,3 +215,7 @@ CREATE EVENT `Call_timeout` ON SCHEDULE EVERY 1 SECOND ON COMPLETION NOT PRESERV
 
 
 
+=======
+-- EVENTS
+CREATE EVENT `Call_timeout` ON SCHEDULE EVERY 1 SECOND ON COMPLETION NOT PRESERVE ENABLE DO CALL timeout();
+>>>>>>> 53fdc6f62585d9573b45965db9cb317d4e85d0d0

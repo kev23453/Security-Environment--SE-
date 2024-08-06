@@ -17,6 +17,8 @@ body{
 .dashboard{
     width: var(--ancho-total);
     min-height: var(--alto-total);
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .dashboard #cabezera{
@@ -47,9 +49,9 @@ body{
 }
 .incidencias .container_data .box{
     border: var(--border-black);
-    width: 100%;
+    width: 80%;
     margin: 10px;
-    padding: 20px 15px;
+    padding: 10px 5px;
     display: flex;
     align-items: center;
 }
@@ -95,7 +97,13 @@ body{
 
 .container_charts{
     display: flex;
+<<<<<<< HEAD
     /*background: rgba(150, 229, 255, 0.377);*/
 }
 
 /*doughnut*/
+=======
+    justify-content: space-between;
+    flex-direction: column;
+}
+>>>>>>> dashboard

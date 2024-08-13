@@ -19,11 +19,10 @@ if(isset($_POST['testCode'])){
     }
     $codigo = md5($conect_strt);
 
-
-    $sql_queryTok = "SELECT * FROM usertokens INNER JOIN token ON token.idToken = usertokens.token_id WHERE usertokens.user_id = $user";
+    $sql_queryTok = "SELECT * FROM usertokens INNER JOIN token ON token.idToken = usertokens.token_id WHERE usertokens.user_id = $user ORDER BY token_id DESC";
     $slct_tok = mysqli_query($conection, $sql_queryTok);
     $fetch_tok = mysqli_fetch_assoc($slct_tok);
-    $token = trim($fetch_tok['token']);//trim es un metodo para eliminar los espacios en blanco que tenga la variable
+    $token = trim($fetch_tok['token']); //trim es un metodo para eliminar los espacios en blanco que tenga la variable
 
     if($fetch_tok['idType'] != 2){
         $message_alert[] = "token de verificacion invalido";

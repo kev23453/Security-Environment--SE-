@@ -46,3 +46,44 @@ form button{
     font-size: 16px;
     font-weight: 500;
 }
+form #instruction{
+    width: 70%;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 20px;
+    color: #767676;
+    font-weight: 500;
+}
+
+
+#container_inputs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin-top: 14px;
+}
+
+#container_inputs .box{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 10px;
+}
+#container_inputs .box span{
+    font-size: 14px;
+    color: #808080;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+
+#container_inputs .box input{
+    width: 100%;
+    border: var(--border);
+    padding: 8px 14px;
+    border-radius: 4px;
+    outline: none;
+}
+#container_inputs .box input:focus{
+    border: 1px solid #4845ff;
+}

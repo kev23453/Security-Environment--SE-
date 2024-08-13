@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 
 $route_c = "conexion.php";

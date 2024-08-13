@@ -18,7 +18,7 @@ body{
     width: var(--ancho-total);
     min-height: var(--alto-total);
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 
 .dashboard #cabezera{
@@ -87,23 +87,8 @@ body{
     font-size: 25px;
 }
 
-
-
-
-
-
-
-
-
 .container_charts{
     display: flex;
-<<<<<<< HEAD
-    /*background: rgba(150, 229, 255, 0.377);*/
-}
-
-/*doughnut*/
-=======
     justify-content: space-between;
     flex-direction: column;
 }
->>>>>>> dashboard

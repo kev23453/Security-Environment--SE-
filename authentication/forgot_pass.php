@@ -1,12 +1,12 @@
 <?php
 
-date_default_timezone_set(" ".$_ENV['DATEZONE']." ");
-
 require __DIR__ . '/../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
+
+date_default_timezone_set($_ENV['DATEZONE']);
 
 include '../conexion.php';
 
@@ -21,6 +21,7 @@ if(isset($_POST['reset'])){
     $execute = mysqli_query($conection, $query);
 
     if(mysqli_num_rows($execute) > 0){
+        $row = mysqli_fetch_assoc($execute);
         function generateOtp($lenght = 6){
             $opt = '';
             $codigo = '';
@@ -153,9 +154,13 @@ if(isset($_POST['reset'])){
               $insert_tok = "INSERT INTO token(idType, kill_at, token) VALUES(2, '$timeFormatted', '$code')";
               $execute_instok = mysqli_query($conection, $insert_tok);
 
-            if($execute_instok){
+              $idTok = $conection->insert_id;
+
+              $insert_relation = mysqli_query($conection, "INSERT INTO usertokens(user_id, token_id) VALUES( '".$row['idUser']."', '$idTok')");
+              //insertar tambien en la tabla de relacion user-token
+
+            if($execute_instok && $insert_relation){
                 $message_check[] = "token creado";
-                $row = mysqli_fetch_assoc($execute);
 
                 setcookie('user_id', $row['idUser'], time() + 60*60*12, '/');
                 header("refresh:1; url='recoverit_token.php?user=".base64_encode($row['idUser'])." ' ");
@@ -191,9 +196,17 @@ if(isset($_POST['reset'])){
     <form action="" method="post">
     <h2>presiona aqui para recuperar tu contraseña</h2>
     <i class="fas fa-envelope"></i>
-    <span>ingresa el email y nombre de email al que quieres que se envie el codigo de recuperacion</span>
-    <input type="text" name="nameEmail" placeholder="nameEmail">
-    <input type="email" name="email" placeholder="write here...">
+    <span id="instruction">ingresa el email y nombre de email al que quieres que se envie el codigo de recuperacion</span>
+    <div id="container_inputs">
+        <div class="box">
+            <span>name email</span>
+            <input type="text" name="nameEmail" placeholder="write...">
+        </div>
+        <div class="box">
+            <span>email</span>
+            <input type="email" name="email" placeholder="write...">
+        </div>
+    </div>
     <button type="submit" name="reset">resetear</button>
     </form>
 </body>

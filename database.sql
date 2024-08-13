@@ -97,12 +97,6 @@ CREATE TABLE admin_adminType(
    FOREIGN KEY (idType) REFERENCES adminType(idType)
 );
 
-<<<<<<< HEAD
-
-
-
-
-
 
 CREATE TABLE provincia (
     id_provincia INT(50) PRIMARY KEY AUTO_INCREMENT, 
@@ -123,17 +117,12 @@ INSERT INTO status_caso(status) VALUES("Pendiente"),("En curso"),("Declinado"),(
 
 
 
-
-
-
 CREATE TABLE casoType ( 
     id_casotype int(255) PRIMARY KEY AUTO_INCREMENT,
     type VARCHAR (500)
 );
 
 INSERT INTO casoType(type) VALUES ('violencia_de_genero'),('agrecion'),('robo'),('estafas'),('homicidio');
-
-
 
 
 CREATE TABLE caso( 
@@ -163,16 +152,6 @@ create table casos_tipocaso (
 -- ALTER TABLE caso ADD FOREIGN KEY (tipoCaso) REFERENCES casos_tipoCaso(idcaso)
 
 
-
-
-
-
-
-
-
-
-=======
->>>>>>> 53fdc6f62585d9573b45965db9cb317d4e85d0d0
 -- PROCEDURES
 DELIMITER //
 
@@ -192,30 +171,7 @@ END //
 
 DELIMITER ;
 
-<<<<<<< HEAD
-
-
-
-
-
-
 
 -- EVENTS
 CREATE EVENT `Call_timeout` ON SCHEDULE EVERY 1 SECOND ON COMPLETION NOT PRESERVE ENABLE DO CALL timeout();
 
-
-
-
-
-
-
-
-
-
-
-
-
-=======
--- EVENTS
-CREATE EVENT `Call_timeout` ON SCHEDULE EVERY 1 SECOND ON COMPLETION NOT PRESERVE ENABLE DO CALL timeout();
->>>>>>> 53fdc6f62585d9573b45965db9cb317d4e85d0d0

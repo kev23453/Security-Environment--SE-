@@ -1,3 +1,4 @@
+<!-- 
 # Security-Environment-SE-
 _julio-07-2024_
 
@@ -38,6 +39,7 @@ Con nuestra aplicación podrás:
 - **Tomar Decisiones Informadas**: Basadas en datos confiables sobre la seguridad en diferentes ubicaciones.
   
 - **Mejorar tu Experiencia en el País**: Disfrutar de la cultura, playas y atracciones dominicanas con tranquilidad y seguridad.
+<--
 
 ### Contribución
 
